@@ -61,6 +61,9 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# For Vercel deployment - always use StaticFilesHandler
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
 # Prod security settings
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
