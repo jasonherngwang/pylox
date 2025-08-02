@@ -11,6 +11,5 @@
         "src": "/(.*)",
         "dest": "config/wsgi.py"
       }
-    ],
-    "domains": ["pylox.jasonherngwang.com"]
+    ]
   }
