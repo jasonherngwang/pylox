@@ -165,20 +165,20 @@ class ASTVisualizer(ExprVisitor[str], StmtVisitor[str]):
 
         # Condition
         children.append(
-            f'<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">condition:</div>'
+            '<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">condition:</div>'
         )
         children.append(stmt.condition.accept(self))
 
         # Then branch
         children.append(
-            f'<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">then:</div>'
+            '<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">then:</div>'
         )
         children.append(stmt.then_branch.accept(self))
 
         # Else branch
         if stmt.else_branch:
             children.append(
-                f'<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">else:</div>'
+                '<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">else:</div>'
             )
             children.append(stmt.else_branch.accept(self))
 
@@ -190,11 +190,11 @@ class ASTVisualizer(ExprVisitor[str], StmtVisitor[str]):
         self.current_depth += 1
 
         children.append(
-            f'<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">condition:</div>'
+            '<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">condition:</div>'
         )
         children.append(stmt.condition.accept(self))
         children.append(
-            f'<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">body:</div>'
+            '<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">body:</div>'
         )
         children.append(stmt.body.accept(self))
 
@@ -310,13 +310,13 @@ class ASTVisualizer(ExprVisitor[str], StmtVisitor[str]):
         self.current_depth += 1
 
         children.append(
-            f'<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">function:</div>'
+            '<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">function:</div>'
         )
         children.append(expr.callee.accept(self))
 
         if expr.arguments:
             children.append(
-                f'<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">arguments:</div>'
+                '<div class="text-xs text-gray-500 font-semibold my-1 mt-2 tracking-wide">arguments:</div>'
             )
             for arg in expr.arguments:
                 children.append(arg.accept(self))
