@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+{% include "pylox_web/components/header.html" %}
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+  {% include "pylox_web/components/editor.html" %}
+  {% include "pylox_web/components/output_panel.html" %}
+</div>
+
+<script src="{% static 'js/examples.js' %}"></script>
+<script src="{% static 'js/monaco-config.js' %}"></script>
+<script src="{% static 'js/pylox-app.js' %}"></script>
+<script>
+  // Django-specific configuration
+  window.executeUrl = '{% url "pylox_web:execute" %}';
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="w-full">
+  <div class="tabs tabs-boxed mb-4">
+    <a id="output-tab" class="tab tab-active" onclick="switchTab('output')"
+      >Output</a
+    >
+    <a id="ast-tab" class="tab" onclick="switchTab('ast')">AST</a>
+  </div>
+
+  <div id="output-panel" class="tab-content" style="display: block">
+    <pre
+      id="output"
+      class="textarea textarea-bordered rounded-md w-full h-[400px] lg:h-[500px] p-4 font-mono text-sm overflow-auto m-0 bg-gray-50 text-gray-600 resize-none cursor-text"
+    ></pre>
+  </div>
+
+  <div id="ast-panel" class="tab-content" style="display: none">
+    <div
+      class="border border-gray-300 rounded-md w-full h-[400px] lg:h-[500px] bg-white overflow-hidden"
+    >
+      <div id="ast-display" style="height: 100%" class="overflow-auto">
+        <div
+          class="bg-white p-4 h-full overflow-y-auto font-mono text-xs leading-relaxed ast-scrollable"
+        >
+          <div class="text-gray-500 italic text-center p-5">
+            No code to parse
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

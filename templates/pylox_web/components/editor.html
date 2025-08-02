@@ -1,0 +1,63 @@
+{% load static %}
+
+<div>
+  {% csrf_token %}
+  <div
+    id="lox-editor"
+    class="w-full h-[400px] lg:h-[557px] border border-gray-300 rounded-md overflow-hidden py-4"
+  ></div>
+
+  <div class="space-y-2 mt-4">
+    <p class="text-sm text-gray-600 font-bold">Example code snippets</p>
+    <div class="flex flex-wrap gap-2">
+      <button
+        onclick="loadExample('math')"
+        class="btn btn-sm btn-outline btn-primary"
+      >
+        math
+      </button>
+      <button
+        onclick="loadExample('variables')"
+        class="btn btn-sm btn-outline btn-primary"
+      >
+        variables & scoping
+      </button>
+      <button
+        onclick="loadExample('control')"
+        class="btn btn-sm btn-outline btn-primary"
+      >
+        control flow
+      </button>
+      <button
+        onclick="loadExample('functions')"
+        class="btn btn-sm btn-outline btn-secondary"
+      >
+        functions
+      </button>
+      <button
+        onclick="loadExample('closures')"
+        class="btn btn-sm btn-outline btn-secondary"
+      >
+        closures
+      </button>
+      <button
+        onclick="loadExample('classes')"
+        class="btn btn-sm btn-outline btn-accent"
+      >
+        classes
+      </button>
+      <button
+        onclick="loadExample('inheritance')"
+        class="btn btn-sm btn-outline btn-accent"
+      >
+        inheritance
+      </button>
+      <button
+        onclick="loadExample('functional')"
+        class="btn btn-sm btn-outline btn-warning"
+      >
+        first-class functions
+      </button>
+    </div>
+  </div>
+</div> 
