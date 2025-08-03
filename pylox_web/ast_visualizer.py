@@ -28,7 +28,7 @@ class ASTVisualizer(ExprVisitor[str], StmtVisitor[str]):
 
             if self.node_count >= self.max_nodes:
                 html_parts.append(
-                    '<div class="text-red-600 italic bg-red-50 p-2 rounded border border-dashed border-red-300 m-1">... (truncated - too many nodes)</div>'
+                    f'<div class="text-red-600 italic bg-red-50 p-2 rounded border border-dashed border-red-300 m-1">... (truncated - AST has {self.node_count}+ nodes, showing first {self.max_nodes})</div>'
                 )
                 break
 
@@ -76,7 +76,7 @@ class ASTVisualizer(ExprVisitor[str], StmtVisitor[str]):
         self.node_count += 1
 
         if self.node_count > self.max_nodes:
-            return '<div class="text-red-600 italic bg-red-50 p-2 rounded border border-dashed border-red-300 m-1">...</div>'
+            return '<div class="text-red-600 italic bg-red-50 p-2 rounded border border-dashed border-red-300 m-1">... (node limit reached)</div>'
 
         if self.current_depth > self.max_depth:
             return f'<div class="text-red-600 italic bg-red-50 p-2 rounded border border-dashed border-red-300 m-1">... (max depth {self.max_depth} reached)</div>'

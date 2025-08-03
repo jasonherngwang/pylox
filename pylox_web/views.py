@@ -48,7 +48,7 @@ def generate_ast_visualization(code: str) -> str:
         parser = Parser(tokens)
         statements = parser.parse()
 
-        visualizer = ASTVisualizer()
+        visualizer = ASTVisualizer(max_depth=20, max_nodes=500)
         return visualizer.visualize_statements(statements)
 
     except ParseError as e:
