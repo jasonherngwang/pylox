@@ -1,8 +1,8 @@
 // PyLox code examples demonstrating different language features
 const ExamplesModule = (function () {
   const examples = {
-    math: `// Arithmetic expressions with operator precedence
-print "Basic arithmetic:";
+    math: `// Math expressions with operator precedence
+print "Basic math:";
 print 2 + 3 * 4;           // 14 (multiplication first)
 print (2 + 3) * 4;         // 20 (parentheses override)
 print 10 / 2 - 3;          // 2 (left-to-right for same precedence)
@@ -10,16 +10,15 @@ print 10 / 2 - 3;          // 2 (left-to-right for same precedence)
 print "Comparisons:";
 print 5 > 3;               // true
 print 10 == 5 * 2;         // true
-print 7 != 8;              // true
+print 7 == 8;              // false
 
 print "String operations:";
-print "Hello" + " " + "World!";
-print "The answer is " + 42;`,
+print "🐍 Lox" + " " + "Bagel!";
+print "I can eat " + 42 + "pizzas";`,
 
     variables: `// Variable declarations and scoping
-print "Global variables:";
-var global = "I'm global";
 var x = 10;
+print "Outside block: x = " + x;
 
 print "Block scoping:";
 {
@@ -38,40 +37,26 @@ print "Counter: " + counter;`,
 
     control: `// Control flow: if/else and loops
 print "If/else statements:";
-var age = 25;
-if (age >= 18) {
-    print "You are an adult";
+var cat_count = 25;
+if (cat_count >= 10) {
+    print "You are an extreme cat lady 😻";
 } else {
-    print "You are a minor";
-}
-
-print "While loop:";
-var i = 1;
-while (i <= 3) {
-    print "While iteration: " + i;
-    i = i + 1;
+    print "You are a regular cat lady 🐈‍⬛";
 }
 
 print "For loop:";
 for (var j = 1; j <= 3; j = j + 1) {
-    print "For iteration: " + j;
-}
-
-print "Nested control flow:";
-for (var x = 1; x <= 3; x = x + 1) {
-    if (x == 2) {
-        print "Found the number 2!";
-    }
+    print "Iteration: " + j;
 }`,
 
     functions: `// Function declarations, calls, and recursion
 print "Basic function:";
-fun greet(name) {
-    return "Hello, " + name + "!";
+fun chow(food) {
+    return "Nom " + food + "!";
 }
-print greet("PyLox");
+print chow("bao");
 
-print "Function with multiple parameters:";
+print "Function with multiple params:";
 fun add(a, b) {
     return a + b;
 }
@@ -129,34 +114,56 @@ print "add10(7) = " + add10(7);   // 17`,
 
     classes: `// Classes with methods and constructors
 print "Basic class definition:";
-class Person {
-    init(name, age) {
+class Animal {
+    init(name, species, favorite_food) {
         this.name = name;
-        this.age = age;
+        this.species = species;
+        this.favorite_food = favorite_food;
+        this.belly = 0;
     }
     
     introduce() {
-        return "Hi, I'm " + this.name + " and I'm " + 
-               this.age + " years old.";
+        return "Hi, I'm " + this.name + " the " + this.species + 
+               " and I love " + this.favorite_food;
     }
     
-    birthday() {
-        this.age = this.age + 1;
-        print this.name + " is now " + this.age + "!";
+    eat(food) {
+        if (food == this.favorite_food) {
+            this.belly = this.belly + 2;
+            print this.name + " devours " + food + "";
+        } else {
+            this.belly = this.belly + 1;
+            print this.name + " reluctantly eats " + food + "...";
+        }
+        print this.name + "'s belly is now " + this.belly + "/10 full!";
+    }
+    
+    burp() {
+        if (this.belly > 5) {
+            print "*burp*";
+            this.belly = this.belly - 1;
+        } else {
+            print this.name + " is still hungry...";
+        }
     }
 }
 
-var alice = Person("Alice", 30);
-print alice.introduce();
-alice.birthday();
+var shelly = Animal("Shelly", "armadillo", "catfish");
+print shelly.introduce();
+shelly.eat("catfish");
+shelly.eat("bubblegum");
+shelly.burp();
 
 print "Multiple instances:";
-var bob = Person("Bob", 25);
-print bob.introduce();
+var chubbs = Animal("Chubbs", "crocodile", "key lime pie");
+print chubbs.introduce();
+chubbs.eat("steak");
+chubbs.eat("key lime pie");
+chubbs.burp();
 
 print "Instance fields:";
-alice.hobby = "reading";
-print alice.name + " likes " + alice.hobby;`,
+shelly.nap_spot = "sunny window";
+print shelly.name + " loves napping on the " + shelly.nap_spot;`,
 
     inheritance: `// Class inheritance with super calls
 print "Inheritance example:";
@@ -176,35 +183,31 @@ class Animal {
     }
 }
 
-class Dog < Animal {
+class Flamingo < Animal {
     init(name, breed) {
-        super.init(name, "dog");
+        super.init(name, "flamingo");
         this.breed = breed;
     }
     
     speak() {
-        return this.name + " barks!";
+        return this.name + " squawks!";
     }
     
     info() {
         return super.info() + " (" + this.breed + ")";
     }
     
-    wagTail() {
-        return this.name + " wags tail happily";
+    flapWings() {
+        return this.name + " flaps wings";
     }
 }
 
-var buddy = Dog("Buddy", "Golden Retriever");
-print buddy.speak();
-print buddy.info();
-print buddy.wagTail();
+var palmer = Flamingo("Palmer", "Flamingo");
+print palmer.speak();
+print palmer.info();
+print palmer.flapWings();`,
 
-print "Polymorphism:";
-var animal = buddy;  // Dog instance treated as Animal
-print animal.speak();  // Calls Dog's speak method`,
-
-    functional: `// First-class functions: functions as values
+    functional: `// First-class functions
 print "Functions as values:";
 fun add(a, b) { return a + b; }
 fun multiply(a, b) { return a * b; }
@@ -231,26 +234,7 @@ fun createMultiplier(factor) {
 var double = createMultiplier(2);
 var triple = createMultiplier(3);
 print "Double 7: " + double(7);
-print "Triple 4: " + triple(4);
-
-print "Using functions with higher-order functions:";
-fun twice(f, x) {
-    return f(f(x));
-}
-
-fun increment(n) {
-    return n + 1;
-}
-
-// Using named function instead of anonymous
-var result = twice(increment, 5);
-print "Increment 5 twice: " + result;  // 7
-
-print "Function arrays (using variables):";
-var operations = add;  // Start with one function
-print "First operation 3,4: " + operations(3, 4);
-operations = multiply;  // Switch to different function
-print "Second operation 3,4: " + operations(3, 4);`,
+print "Triple 4: " + triple(4);`,
   };
 
   return {

@@ -70,17 +70,23 @@ class Scanner:
         # 2-chars
         # We need to look ahead to the next char to see if the 2 chars together form a lexeme
         elif c == "!":
-            self.add_token(TokenType.BANG_EQUAL if self.consume_if_match("=") else TokenType.BANG)
+            self.add_token(
+                TokenType.BANG_EQUAL if self.consume_if_match("=") else TokenType.BANG
+            )
         elif c == "=":
             self.add_token(
                 TokenType.EQUAL_EQUAL if self.consume_if_match("=") else TokenType.EQUAL
             )
 
         elif c == "<":
-            self.add_token(TokenType.LESS_EQUAL if self.consume_if_match("=") else TokenType.LESS)
+            self.add_token(
+                TokenType.LESS_EQUAL if self.consume_if_match("=") else TokenType.LESS
+            )
         elif c == ">":
             self.add_token(
-                TokenType.GREATER_EQUAL if self.consume_if_match("=") else TokenType.GREATER
+                TokenType.GREATER_EQUAL
+                if self.consume_if_match("=")
+                else TokenType.GREATER
             )
 
         elif c == "/":
@@ -96,7 +102,7 @@ class Scanner:
             pass  # Ignore whitespace
         elif c == "\n":
             self.line += 1
-        
+
         # String literals
         elif c == '"':
             self.string_literal()
